@@ -1,0 +1,9 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.input :username %>
+  <%= f.input :password %>
+  <%= f.input :email %>
+  <%= f.input :firstname %>
+  <%= f.input :lastname %>
+  <%= f.input :avatar, hint: "Please paste a url with the HTTP", label: "Photo URL" %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

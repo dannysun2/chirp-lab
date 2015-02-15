@@ -1,0 +1,11 @@
+<%= simple_form_for @user, url: wizard_path, method: :put do |f| %>
+  <%=  f.input :firstname  %>
+  <%=  f.input :lastname  %>
+  <%=  f.input :email  %>
+
+  <%= f.submit "Save and Continue", class: "btn btn-primary" %>
+<% end %>
+
+<hr/>
+<%= link_to 'back', previous_wizard_path %>
+<%= link_to 'skip', next_wizard_path %>
