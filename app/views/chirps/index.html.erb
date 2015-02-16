@@ -2,8 +2,9 @@
     <div class="thumbnail">
       <div class="caption">
          <h4><%= @current_user.firstname.capitalize + " " + @current_user.lastname.capitalize %></h4>
-         <%= image_tag @current_user.avatar.url(:profile) %></br>
+         <%= image_tag @current_user.avatar.url(:profile), class: 'img-responsive' %>
          <div>
+         </br>
             <button class="btn btn-sm" type="button">Chirps
                <div class='text-left'>
                   <b><%=@current_user.chirps.count%></b></div>
