@@ -9,6 +9,20 @@ html body .container-fluid {
    }
 }
 
+.heading {
+   font-family: Raleway;
+   h2 {
+      font-weight: 600;
+      font-size: 38px;
+      color: #fff;
+   }
+   p {
+      color: #fff;
+      font-size: 25px;
+      font-weight: 300;
+
+   }
+}
 .caption {
    h5 {
       font-family: Raleway;
@@ -22,7 +36,7 @@ html body .container-fluid {
 }
 
 label {
-   color: #fff;
+   color: #777;
 }
 
 .navbar-default {
@@ -50,4 +64,8 @@ background-size: cover;
          color: grey;
          }
       }
+   .small {
+      font-size: 10px;
+      color: #777;
+   }
 }

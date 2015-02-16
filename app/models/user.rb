@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
    mount_uploader :avatar, AvatarUploader
 
-   def full_name
-    [first_name, last_name].join(" ")
-  end
+   def full_name(user)
+    [user.firstname, user.lastname].join(" ")
+   end
 
   # login step
   validates :username, presence: true, uniqueness: true, :if => :active_or_login?

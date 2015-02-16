@@ -3,22 +3,20 @@
       <div class="caption">
          <h4><%= @current_user.firstname.capitalize + " " + @current_user.lastname.capitalize %></h4>
          <%= image_tag @current_user.avatar.url(:profile) %>
-         <em><%= "@" + @current_user.username %></em>
-
          <div>
-            <button class="btn btn-sm" type="button">
-            Chirps
-               <div class='text-left'><b><%=@current_user.chirps.count%></b></div>
+            <button class="btn btn-sm" type="button">Chirps
+               <div class='text-left'>
+                  <b><%=@current_user.chirps.count%></b></div>
             </button>
-
-            <button class="btn btn-sm" type="button">
-               Following
-               <div class='text-left'><b><%=@current_user.follow_count%></b></div>
+            <button class="btn btn-sm" type="button">Following
+               <div class='text-left'>
+                  <b><%=@current_user.follow_count%></b>
+               </div>
             </button>
-
-            <button class="btn btn-sm" type="button">
-               Followers
-               <div class='text-left'><b><%=@current_user.followers_count%></b></div>
+            <button class="btn btn-sm" type="button">Followers
+               <div class='text-left'>
+                  <b><%=@current_user.followers_count%></b>
+               </div>
             </button>
          </div>
       </div>
@@ -28,12 +26,12 @@
       <div class="caption">
          <h5>Who to Follow</h5>
             <ul class='list-unstyled'>
-            <% @users.each do |user| %>
-                <% if @current_user.following?(user) == false && @current_user.id != user.id%>
+               <% @users.sample(5).each do |user| %>
+                  <% if @current_user.following?(user) == false && @current_user.id != user.id%>
                   <li><%= user.firstname.capitalize%> <%= user.lastname.capitalize %>
                   <%= link_to "Follow", start_following_path(user_id: user.id), method: :post, class: "btn btn-default btn-xs"%></li>
-                <% end %>
-            <% end %>
+                  <% end %>
+               <% end %>
             </ul>
       </div>
     </div>
@@ -41,26 +39,28 @@
 
 <div class='col-md-6'>
    <%= form_for @chirp do |f| %>
-   <div class="input-group">
-      <%= f.text_field :message, class: "form-control", placeholder: "What's going on?" %><br />
-      <span class="input-group-btn">
-      <%= f.submit class: 'btn btn-default' %>
-      </span>
-      <% end %>
-   </div>
-
+      <div class="input-group">
+         <%= f.text_field :message, class: "form-control", placeholder: "What's going on?" %><br />
+         <span class="input-group-btn">
+            <%= f.submit class: 'btn btn-default' %>
+         </span>
+   <% end %>
+      </div>
 </br>
 
-<ul class="media-list">
-   <li class='media'><h5>Chirps</h5></li>
+<ul class="list-group">
+   <li class='list-group-item'><h5>Chirps</h5></li>
    <% @timeline.each do |c| %>
-      <li><div class='media-left'>
+      <li class='list-group-item'>
+         <div class='media-left'>
          <%= image_tag c.user.avatar.thumb %>
       </div>
       <div class='media-body'>
-         <b><%= c.user.firstname.capitalize %> <%= c.user.lastname.capitalize %></b></br>
-         <%= c.message %>
-      </div></li>
+         <b><%= c.user.firstname.capitalize %> <%= c.user.lastname.capitalize %></b>
+         <span class='small'>Chirped <%= distance_of_time_in_words(Time.now, c.created_at) %> ago</span>
+         <p><%= c.message %></p>
+      </div>
+      </li>
 <% end %>
 <%= paginate @timeline %>
 </ul>
@@ -72,9 +72,9 @@
          <h5>Currently Following</h5>
          <ul class='list-unstyled'>
             <% @current_user.all_following.each do |user| %>
-            <li><%= user.firstname.capitalize + " " + user.lastname.capitalize %>
-            <%= link_to "Unfollow", stop_following_path(user_id: user.id), method: :post, class: "btn btn-danger btn-xs"%>
-            </li>
+               <li><%= user.firstname.capitalize + " " + user.lastname.capitalize %>
+                  <%= link_to "Unfollow", stop_following_path(user_id: user.id), method: :post, class: "btn btn-danger btn-xs"%>
+               </li>
             <% end %>
          </ul>
       </div>

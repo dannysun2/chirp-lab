@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
   def signed_in?
     session[:user_id].to_i > 0
   end
-  
+
+  def full_name(user)
+  [user.firstname, user.lastname].join(" ")
+  end
+
 end

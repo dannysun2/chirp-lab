@@ -1,9 +1,14 @@
+<div class="panel panel-default col-md-4 col-md-offset-4">
+   <h1 class='heading text-center'>Sign Up</h1>
+   <div class="panel-body">
 <%= simple_form_for(@user) do |f| %>
   <%= f.input :username %>
   <%= f.input :password %>
   <%= f.input :email %>
-  <%= f.input :firstname %>
-  <%= f.input :lastname %>
-  <%= f.input :avatar, hint: "Please paste a url with the HTTP", label: "Photo URL" %>
+  <%= f.input :firstname, label: "First Name" %>
+  <%= f.input :lastname, label: "Last Name"%>
+  <%= f.input :avatar, label: "Upload Photo" %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
+</div>
+</div>
